@@ -28,7 +28,7 @@
 
 			// initial execution
 			cat_assistant_init();
-			
+
 
 		});
 
@@ -96,8 +96,7 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<button type="button"> Choisir</button>');
-
+			$assistant_el.append('<input type="file" id="mypdf" onchange="getFileInfo()"/>');
 
 			// show navigation
 			cat_assistant_show_navigation();
@@ -108,16 +107,35 @@
 			// ...
 			//...
 		}
-		function cat_assistant_upload() {
-			
+        // file uploaded info
+		function getFileInfo() {
+			var name = document.getElementById('mypdf').files[0].name;
+			var size = document.getElementById('mypdf').files[0].size;
+			var type = document.getElementById('mypdf').files[0].value;
+			var uploaded_file = document.getElementById('mypdf');
+            var type =  uploaded_file.value;
+			// verify file type
+			if( type.match(/\.pdf/)){
+				console.log('pdf ouiiiii');
+				// verify file size
+				// if()
+
+			}
+			else
+			// console.log( 'pas de pdf');
+			// console.log(format);
+			alert('Veuillez télécharger un fichier pdf');
 		}
+		// function cat_assistant_upload() {
+
+		// }
 		function cat_assistant_show_navigation() {
 
-			var $prev = $('<a class="cat_assistant_btn_prev" href="#prev">'+lang( 'fr', "Précédent", 'en', "Previous")+'</a>').click(function() {
+			var $prev = $('<a class="cat_assistant_btn_prev" href="#prev">' + lang('fr', "Précédent", 'en', "Previous") + '</a>').click(function() {
 				cat_assistant_goto_step('prev');
 			});
 
-			var $next = $('<a class="cat_assistant_btn_next" href="#prev">'+lang( 'fr', "Suivant", 'en', "Next")+'</a>').click(function() {
+			var $next = $('<a class="cat_assistant_btn_next" href="#prev">' + lang('fr', "Suivant", 'en', "Next") + '</a>').click(function() {
 				cat_assistant_goto_step('next');
 			});
 
@@ -130,9 +148,10 @@
 		}
 
 		// cat_assistant_
-		
-//  temp funct
+
+		//  temp funct
 		var ws_lang = 'fr';
+
 		function lang() {
 			var dft_txt = '';
 
