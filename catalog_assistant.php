@@ -104,7 +104,7 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<form action="/file-upload" class="dropzone"> <div class="fallback"><input name="file" type="file" multiple /></div></form>');
+			$assistant_el.append('<form action="/" class="dropzone" id ="dropzoneForm"> <div class="fallback"><input name="file" type="file" multiple /></div></form> <button type="button" id="submit">Uploader </button>');
 			$(document).ready(function() {
 					Dropzone.options.myAwesomeDropzone = {
 						autoProcessQueue: false,
@@ -112,7 +112,13 @@
 						maxFiles: 1,
 						acceptedFiles: ".pdf",
 						init: function() {
-							var submitButton ='';
+							var submitButton = document.querySelector('#submit');
+							myAwesomeDropzone=this;
+							console.log ('chargé');
+							submitButton.addEventListener("click", function(){
+                            mydropzone.processQueue();
+							});
+							this.on("complete", function(){});
 						}
 
 					};
