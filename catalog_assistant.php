@@ -11,7 +11,8 @@
 	<title>A blank HTML5 page</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="dropzone/dist/dropzone.js"></script>
-	<link  rel ="stylesheet"  type="text/css" href="dropzone/dist/dropzone.css"></script>
+	<link rel="stylesheet" type="text/css" href="dropzone/dist/dropzone.css">
+	</script>
 
 </head>
 
@@ -104,23 +105,18 @@
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
 			$assistant_el.append('<form action="/file-upload" class="dropzone"> <div class="fallback"><input name="file" type="file" multiple /></div></form>');
-			Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
+			$(document).ready(function() {
+					Dropzone.options.myAwesomeDropzone = {
+						autoProcessQueue: false,
+						maxFilesize: 5, // MB
+						maxFiles: 1,
+						acceptedFiles: ".pdf",
+						init: function() {
+							var submitButton ='';
+						}
 
-				paramName: "file", // The name that will be used to transfer the file
-				maxFilesize: 2,
-				maxThumbnailFilesize: 2, // MB
-				parallelUploads: 2,
-				maxFiles: 2,
-				maxfilesexceeded: 2,
-				accept: function(file, done) {
-					// verify type
-					if (file.type == "pdf") { 
-						// verify size
-						console.log('fichier bon');
-					}
-					else { done('votre fichier doit etre en format pdf'); }
-				}
-			};
+					};
+				});
 			// show navigation
 			cat_assistant_show_navigation();
 
