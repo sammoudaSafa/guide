@@ -104,22 +104,27 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<form action="/" class="dropzone" id ="dropzoneForm"> <div class="fallback"><input name="file" type="file" multiple /></div></form> <button type="button" id="submit">Uploader </button>');
+			$assistant_el.append('<form action="/" class="dropzone" id ="dropzoneForm"> <div class="fallback"><input name="file" type="file" multiple /></div></form> <button type="button" id="submit-all">Uploader </button>');
 			$(document).ready(function() {
-					Dropzone.options.myAwesomeDropzone = {
+					Dropzone.options.dropzoneForm = {
 						autoProcessQueue: false,
 						maxFilesize: 5, // MB
 						maxFiles: 1,
 						acceptedFiles: ".pdf",
 						init: function() {
-							var submitButton = document.querySelector('#submit');
-							myAwesomeDropzone=this;
-							console.log ('chargé');
+							var submitButton = document.querySelector('#submit-all');
+							myDropzone = this;
 							submitButton.addEventListener("click", function(){
-                            mydropzone.processQueue();
+							mydropzone.processQueue();
+							console.log ('chargé');
+							
 							});
-							this.on("complete", function(){});
-						}
+							this.on("complete", function(){
+								if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length== 0){
+									console.log("charged file");
+								}
+							});
+						},
 
 					};
 				});
