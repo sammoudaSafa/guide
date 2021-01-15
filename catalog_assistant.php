@@ -61,16 +61,16 @@
 				case 2:
 					cat_assistant_upload();
 					break;
-					case 3:
+				case 3:
 					cat_assistant_preview()
 					break;
-					case 4:
+				case 4:
 					cat_assistant_upload_pictures()
 					break;
-					case 5:
+				case 5:
 					cat_assistant_generate_file()
 					break;
-					case 6:
+				case 6:
 					cat_assistant_data_upload_file()
 					break;
 
