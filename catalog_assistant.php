@@ -10,6 +10,7 @@
 <head>
 	<title>A blank HTML5 page</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="dropzone/dist/dropzone.js"></script>
 </head>
 
 <body>
@@ -87,8 +88,8 @@
 			// ask use if PDF is optimized
 			$assistant_el.empty();
 
-			$assistant_el.append('<h1>Ã‰tape 1</h1>');
-			$assistant_el.append('<h2>Votre pdf es-il rÃ©duit?</h2>');
+			$assistant_el.append('<h1>Étape 1</h1>');
+			$assistant_el.append('<h2>Votre pdf es-il réduit?</h2>');
 
 			// show navigation
 			cat_assistant_show_navigation();
@@ -100,37 +101,34 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<input type="file" id="mypdf" />');
-			$assistant_el.append('<button onclick="getFileInfo()">ok </button> ');
+			// $assistant_el.append('<input type="file" id="mypdf" />');
+			// $assistant_el.append('<form action="/file-upload"  class="dropzone" id="my-awesome-dropzone">');
 
+			$assistant_el.append('<form action="/"  class="dropzone" id="my-awesome-dropzone">');
+			$assistant_el.append('<input type="file" name="file" />');
+			$assistant_el.append('</form>');
+			$assistant_el.append('<button type="submit" >Transferer </button> ');
 
+			Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
+
+				paramName: "file", // The name that will be used to transfer the file
+				maxFilesize: 2,
+				maxThumbnailFilesize: 2, // MB
+				parallelUploads: 2,
+				maxFiles: 2,
+				maxfilesexceeded: 2,
+				accept: function(file, done) {
+					// verify type
+					if (file.type == "pdf") { 
+						// verify size
+						console.log('fichier bon');
+					}
+					else { done('votre fichier doit etre en format pdf'); }
+				}
+			};
 			// show navigation
 			cat_assistant_show_navigation();
 
-			// transfer pdf
-			// check PDF size
-			// ...
-			// ...
-			//...
-		}
-        // file uploaded info
-		function getFileInfo() {
-			var uploaded_file = document.getElementById('mypdf');
-			var type =  uploaded_file.value;
-			var size= uploaded_file.size;
-			// verify file type
-			if( type.match(/\.pdf/)){
-				// verify file size
-				if (size < 500){
-					
-
-				}
-				else
-				alert('Votre fichier dépasse 500 Go');
-
-			}
-			else
-			alert('Veuillez télécharger un fichier pdf');
 		}
 
 		function cat_assistant_preview() {
@@ -150,6 +148,7 @@
 			cat_assistant_show_navigation()
 
 		}
+
 		function cat_assistant_generate_file() {
 			// genertate  pdf 
 			$assistant_el.empty();
