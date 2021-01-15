@@ -11,6 +11,8 @@
 	<title>A blank HTML5 page</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="dropzone/dist/dropzone.js"></script>
+	<link  rel ="stylesheet"  type="text/css" href="dropzone/dist/dropzone.css"></script>
+
 </head>
 
 <body>
@@ -101,14 +103,7 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			// $assistant_el.append('<input type="file" id="mypdf" />');
-			// $assistant_el.append('<form action="/file-upload"  class="dropzone" id="my-awesome-dropzone">');
-
-			$assistant_el.append('<form action="/"  class="dropzone" id="my-awesome-dropzone">');
-			$assistant_el.append('<input type="file" name="file" />');
-			$assistant_el.append('</form>');
-			$assistant_el.append('<button type="submit" >Transferer </button> ');
-
+			$assistant_el.append('<form action="/file-upload" class="dropzone"> <div class="fallback"><input name="file" type="file" multiple /></div></form>');
 			Dropzone.options.myAwesomeDropzone = { // The camelized version of the ID of the form element
 
 				paramName: "file", // The name that will be used to transfer the file
