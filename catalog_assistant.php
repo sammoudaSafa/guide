@@ -109,21 +109,21 @@
 		}
         // file uploaded info
 		function getFileInfo() {
-			var name = document.getElementById('mypdf').files[0].name;
-			var size = document.getElementById('mypdf').files[0].size;
-			var type = document.getElementById('mypdf').files[0].value;
 			var uploaded_file = document.getElementById('mypdf');
-            var type =  uploaded_file.value;
+			var type =  uploaded_file.value;
+			var size= uploaded_file.size;
 			// verify file type
 			if( type.match(/\.pdf/)){
-				console.log('pdf ouiiiii');
 				// verify file size
-				// if()
+				if (size < 500){
+					
+
+				}
+				else
+				alert('Votre fichier dépasse 500 Go');
 
 			}
 			else
-			// console.log( 'pas de pdf');
-			// console.log(format);
 			alert('Veuillez télécharger un fichier pdf');
 		}
 		// function cat_assistant_upload() {
