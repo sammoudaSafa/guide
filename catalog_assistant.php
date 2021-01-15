@@ -96,7 +96,9 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<input type="file" id="mypdf" onchange="getFileInfo()"/>');
+			$assistant_el.append('<input type="file" id="mypdf" />');
+			$assistant_el.append('<button onclick="getFileInfo()">ok </button> ');
+
 
 			// show navigation
 			cat_assistant_show_navigation();
