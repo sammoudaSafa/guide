@@ -61,14 +61,18 @@
 				case 2:
 					cat_assistant_upload();
 					break;
-					//case 3:
-					//	break;
-					//case 4:
-					//	break;
-					//case 5:
-					//	break;
-					//case 6:
-					//	break;
+					case 3:
+					cat_assistant_preview()
+					break;
+					case 4:
+					cat_assistant_upload_pictures()
+					break;
+					case 5:
+					cat_assistant_generate_file()
+					break;
+					case 6:
+					cat_assistant_data_upload_file()
+					break;
 
 				default:
 					alert("Not supported");
@@ -122,15 +126,48 @@
 
 				}
 				else
-				alert('Votre fichier d√©passe 500 Go');
+				alert('Votre fichier dÈpasse 500 Go');
 
 			}
 			else
-			alert('Veuillez t√©l√©charger un fichier pdf');
+			alert('Veuillez tÈlÈcharger un fichier pdf');
 		}
-		// function cat_assistant_upload() {
 
-		// }
+		function cat_assistant_preview() {
+			// preview PDF
+			$assistant_el.empty();
+
+			$assistant_el.append('<h1>AppeÁu de fichier</h1></br>');
+			cat_assistant_show_navigation()
+
+		}
+
+		function cat_assistant_upload_pictures() {
+			// upload pictures 
+			$assistant_el.empty();
+
+			$assistant_el.append('<h1>Choisir emplacement fichier</h1>');
+			cat_assistant_show_navigation()
+
+		}
+		function cat_assistant_generate_file() {
+			// genertate  pdf 
+			$assistant_el.empty();
+
+			$assistant_el.append('<h1>5 eme etape</h1>');
+			cat_assistant_show_navigation()
+
+		}
+
+		function cat_assistant_data_upload_file() {
+			// genertate  pdf 
+			$assistant_el.empty();
+
+			$assistant_el.append('<h1>Votre catalogue est pret</h1>');
+			cat_assistant_show_navigation()
+
+		}
+
 		function cat_assistant_show_navigation() {
 
 			var $prev = $('<a class="cat_assistant_btn_prev" href="#prev">' + lang('fr', "Pr√©c√©dent", 'en', "Previous") + '</a>').click(function() {
