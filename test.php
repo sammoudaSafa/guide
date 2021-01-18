@@ -34,6 +34,7 @@
                     mydropzone.processQueue();
                 });
 
+                // after upload
                 this.on("complete", function() {
                     if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0) {
                         var _this = this;
@@ -44,14 +45,6 @@
 
             },
         };
-list_image();
-     function list_image(){
-         $.ajax({
-             url:"upload.php",
-             sucess:function(data){
-                 $('#preview').html(data);
-             }
-         })
-     }
+
     })
 </script>
