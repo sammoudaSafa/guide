@@ -1,5 +1,10 @@
 <?php
-
+$folder_name= 'opload/';
+if(!empty($_FILES)){
+    $temp_file = $_FILES['file']['tmp_name'];
+    $location= $folder_name.$_FILES['file']['name'];
+    move_uploaded_file($temp_file,$location);
+}
 
 
 
@@ -104,34 +109,38 @@
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<form action="/" class="dropzone" id ="dropzoneForm"> <div class="fallback"><input name="file" type="file" multiple /></div></form> <button type="button" id="submit-all">Uploader </button>');
-			$(document).ready(function() {
-					Dropzone.options.dropzoneForm = {
-						autoProcessQueue: false,
-						maxFilesize: 5, // MB
-						maxFiles: 1,
-						acceptedFiles: ".pdf",
-						init: function() {
-							var submitButton = document.querySelector('#submit-all');
-							myDropzone = this;
-							submitButton.addEventListener("click", function(){
-							mydropzone.processQueue();
-							console.log ('chargé');
-							
-							});
-							this.on("complete", function(){
-								if(this.getQueuedFiles().length == 0 && this.getUploadingFiles().length== 0){
-									console.log("charged file");
-								}
-							});
-						},
+			$assistant_el.append('<form action="/" class="dropzone" id="dropzoneForm"> <input name="file" type="file" multiple /> <button type="submit" class="btn btn-info" id="submit-all">Uploader </button></form>');
 
-					};
-				});
-			// show navigation
-			cat_assistant_show_navigation();
+			$(document).ready(function() {
+				Dropzone.options.dropzoneForm = {
+					autoProcessQueue: false,
+					maxFilesize: 5, // MB
+					maxFiles: 1,
+					acceptedFiles: ".pdf",
+					init: function() {
+						var submitButton = document.querySelector('#submit-all');
+						myDropzone = this;
+						submitButton.addEventListener("click", function() {
+							mydropzone.processQueue();
+						});
+
+						this.on("complete", function() {
+							if (this.getQueuedFiles().length == 0 && this.getUploadingFiles().length == 0) {
+								var _this = this;
+								_this.removeAllFiles();
+							}
+
+						});
+
+					},
+				};
+
+
+			});
 
 		}
+
+
 
 		function cat_assistant_preview() {
 			// preview PDF
