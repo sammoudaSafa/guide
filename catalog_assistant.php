@@ -1,11 +1,4 @@
 <?php
-$folder_name= 'opload/';
-if(!empty($_FILES)){
-    $temp_file = $_FILES['file']['tmp_name'];
-    $location= $folder_name.$_FILES['file']['name'];
-    move_uploaded_file($temp_file,$location);
-}
-
 
 
 ?>
@@ -15,8 +8,8 @@ if(!empty($_FILES)){
 <head>
 	<title>A blank HTML5 page</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	<script src="dropzone/dist/dropzone.js"></script>
-	<link rel="stylesheet" type="text/css" href="dropzone/dist/dropzone.css">
+	<script src="dropzone/dist/min/dropzone.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="dropzone/dist/min/dropzone.min.css">
 	</script>
 
 </head>
@@ -109,7 +102,9 @@ if(!empty($_FILES)){
 			$assistant_el.empty();
 
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
-			$assistant_el.append('<form action="/" class="dropzone" id="dropzoneForm"> <input name="file" type="file" multiple /> <button type="submit" class="btn btn-info" id="submit-all">Uploader </button></form>');
+			// $assistant_el.append('<form action="upload.php" class="dropzone" id="dropzoneForm"> <input name="file" type="file" multiple /> <button type="submit" class="btn btn-info" id="submit-all">Uploader </button></form>');
+
+			$assistant_el.append('<form action="upload.php" class="dropzone" id="dropzoneForm">Drop here</form><button type="submit" class="btn btn-info" id="submit-all">Uploader </button>');
 
 			$(document).ready(function() {
 				Dropzone.options.dropzoneForm = {
