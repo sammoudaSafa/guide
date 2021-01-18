@@ -1,5 +1,11 @@
 <?php
-
+$folder_name= "upload/";
+// upload pdf to folder upload
+if(!empty ($_FILES)){
+    $temp_file = $_FILES['file']['tmp_name'];
+    $location= $folder_name.$_FILES['file']['name'];
+    move_uploaded_file($temp_file,$location);
+}
 
 ?>
 <!doctype html>
@@ -104,7 +110,7 @@
 			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
 			// $assistant_el.append('<form action="upload.php" class="dropzone" id="dropzoneForm"> <input name="file" type="file" multiple /> <button type="submit" class="btn btn-info" id="submit-all">Uploader </button></form>');
 
-			$assistant_el.append('<form action="upload.php" class="dropzone" id="dropzoneForm">Drop here</form><button type="submit" class="btn btn-info" id="submit-all">Uploader </button>');
+			$assistant_el.append('<form action="" class="dropzone" id="dropzoneForm">Drop here</form><button type="submit" class="btn btn-info" id="submit-all">Uploader </button>');
 
 			$(document).ready(function() {
 				Dropzone.options.dropzoneForm = {
