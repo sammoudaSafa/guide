@@ -3,23 +3,16 @@ define('WS_CHAR_ENCODING', "ISO");
 ini_set('default_charset', 'ISO-8859-1');
 
 $cat_assistant_dir = 'upload/upload-catalog/';
-$cat_assistant_versions = array_diff(scandir($cat_assistant_dir), array('..', '.'));
+$cat_assistant_versions = scandir($cat_assistant_dir);
+$cat_assistant_version = array();
+$temp=$cat_assistant_versions;
 var_dump($cat_assistant_versions);
-// $cat_assistant_versions = scandir($cat_assistant_dir);
-// $cat_assistant_version = array();
-// $temp=$cat_assistant_versions;
-// // var_dump($cat_assistant_versions);
-// foreach ($temp as $version) {
-
-// 	if('.'!=$version && '..'!=$version){
-// var_dump($temp);
-
-// 	// if (is_dir($cat_assistant_dir . $version)) {
-// 	// 	unset($cat_assistant_versions[$version]);
-// 	// }
-// }
-// }
-// var_dump($cat_assistant_versions);
+foreach ($temp as $version) {
+	if (is_dir($cat_assistant_dir . $version)) {
+		unset($cat_assistant_versions[$version]);
+	}
+}
+var_dump($cat_assistant_versions);
 
 ?>
 <!doctype html>
