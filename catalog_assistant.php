@@ -4,22 +4,13 @@ ini_set('default_charset', 'ISO-8859-1');
 
 $cat_assistant_dir = 'upload/upload-catalog/';
 $cat_assistant_versions = array_diff(scandir($cat_assistant_dir), array('..', '.'));
+$temp = $cat_assistant_versions;
+foreach ($temp as $version) {
+	if (is_dir($cat_assistant_dir . $version)) {
+		unset($cat_assistant_versions[$version]);
+	}
+}
 var_dump($cat_assistant_versions);
-// $cat_assistant_versions = scandir($cat_assistant_dir);
-// $cat_assistant_version = array();
-// $temp=$cat_assistant_versions;
-// // var_dump($cat_assistant_versions);
-// foreach ($temp as $version) {
-
-// 	if('.'!=$version && '..'!=$version){
-// var_dump($temp);
-
-// 	// if (is_dir($cat_assistant_dir . $version)) {
-// 	// 	unset($cat_assistant_versions[$version]);
-// 	// }
-// }
-// }
-// var_dump($cat_assistant_versions);
 
 ?>
 <!doctype html>
@@ -111,8 +102,8 @@ var_dump($cat_assistant_versions);
 			// ask use if PDF is optimized
 			$assistant_el.empty();
 
-			$assistant_el.append('<h1>Étape 1</h1>');
-			$assistant_el.append('<h2>Votre pdf es-il réduit?</h2>');
+			$assistant_el.append('<h1>' + lang('fr', "Étape 1 ", 'en', "Step 1") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Votre pdf est-il réduit?", 'en', "Is your pdf reduced?") + '</h2>');
 
 			// show navigation
 			cat_assistant_show_navigation();
@@ -122,8 +113,9 @@ var_dump($cat_assistant_versions);
 
 			// upload PDF is optimized
 			$assistant_el.empty();
+			$assistant_el.append('<h1>' + lang('fr', "Étape 2 ", 'en', "Step 2") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Importez votre pdf", 'en', "Import your pdf") + '</h2>');
 
-			$assistant_el.append('<h1>Importer votre pdf</h1></br>');
 			// $assistant_el.append('<form action="upload.php" class="dropzone" id="dropzoneForm"> <input name="file" type="file" multiple /> <button type="submit" class="btn btn-info" id="submit-all">Uploader </button></form>');
 
 			$assistant_el.append('<form action="url" class="dropzone" id="dropzoneForm">Drop here</form><button type="submit" class="btn btn-info" id="submit-all">Uploader </button>');
@@ -152,7 +144,8 @@ var_dump($cat_assistant_versions);
 			// 	},
 			// };
 
-
+			// show navigation
+			cat_assistant_show_navigation();
 
 
 		}
@@ -162,8 +155,9 @@ var_dump($cat_assistant_versions);
 		function cat_assistant_preview() {
 			// preview PDF
 			$assistant_el.empty();
+			$assistant_el.append('<h1>' + lang('fr', "Étape 3 ", 'en', "Step 3") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Aperçu de fichier", 'en', "File overview") + '</h2>');
 
-			$assistant_el.append('<h1>Appeçu de fichier</h1></br>');
 			cat_assistant_show_navigation()
 
 		}
@@ -171,8 +165,10 @@ var_dump($cat_assistant_versions);
 		function cat_assistant_upload_pictures() {
 			// upload pictures 
 			$assistant_el.empty();
+			$assistant_el.append('<h1>' + lang('fr', "Étape 4 ", 'en', "Step 4") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Choisir emplacement fichier", 'en', "Choose file location") + '</h2>');
 
-			$assistant_el.append('<h1>Choisir emplacement fichier</h1>');
+
 			cat_assistant_show_navigation()
 
 		}
@@ -180,8 +176,9 @@ var_dump($cat_assistant_versions);
 		function cat_assistant_generate_file() {
 			// genertate  pdf 
 			$assistant_el.empty();
+			$assistant_el.append('<h1>' + lang('fr', "Étape 5 ", 'en', "Step 5") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Instruction", 'en', "Instruction") + '</h2>');
 
-			$assistant_el.append('<h1>5 eme etape</h1>');
 			cat_assistant_show_navigation()
 
 		}
@@ -189,15 +186,16 @@ var_dump($cat_assistant_versions);
 		function cat_assistant_data_upload_file() {
 			// genertate  pdf 
 			$assistant_el.empty();
+			$assistant_el.append('<h1>' + lang('fr', "Étape 6 ", 'en', "Step 6") + '</h1>');
+			$assistant_el.append('<h2>' + lang('fr', "Votre catalogue est prêt", 'en', "Your catalog is ready") + '</h2>');
 
-			$assistant_el.append('<h1>Votre catalogue est pret</h1>');
 			cat_assistant_show_navigation()
 
 		}
 
 		function cat_assistant_show_navigation() {
 
-			var $prev = $('<a class="cat_assistant_btn_prev" href="#prev">' + lang('fr', "PrÃ©cÃ©dent", 'en', "Previous") + '</a>').click(function() {
+			var $prev = $('<a class="cat_assistant_btn_prev" href="#prev">' + lang('fr', "Précédent", 'en', "Previous") + '</a>').click(function() {
 				cat_assistant_goto_step('prev');
 			});
 
@@ -206,7 +204,7 @@ var_dump($cat_assistant_versions);
 			});
 
 			$assistant_el.append($prev);
-			$assistant_el.append('  ');
+			$assistant_el.append('    ');
 			$assistant_el.append($next);
 
 
